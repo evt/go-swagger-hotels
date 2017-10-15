@@ -1,0 +1,53 @@
+swagger: '2.0'
+info:
+  description: This is a simple hotel API
+  version: 1.0.0
+  title: Hotel API
+  contact:
+    email: eugene.toropov@gmail.com
+consumes:
+- application/io.goswagger.hotels.v1+json
+produces:
+- application/io.goswagger.hotels.v1+json
+paths:
+  /hotels/all:
+    get:
+      description: Get all hotels
+      operationId: getAllHotels
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/hotel'
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+definitions:
+  hotel:
+    type: object
+    required:
+    - id
+    - name
+    properties:
+      id:
+        type: string
+        example: 1234
+      name:
+        type: string
+        example: Hilton Hotel NYC
+  error:
+    type: object
+    required:
+    - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
+schemes:
+ - http
+ 
